@@ -1,5 +1,16 @@
 # OINP EOI 评分计算器
 
+## 官方 Draw 数据库
+
+- 首次启动自动写入 `data/official-draws.seed.json` 中的 137 条 2024–2026 官方核对记录。
+- 生产环境仍使用 `OINP_DATA_DIR` 下的 `oinp.json` 持久化客户、评分、预测、Draw 数据和导入日志。
+- 管理员进入 `/?admin=1` 后，可以下载当前 Draw 数据 CSV。
+- 更新时先下载当前 CSV，用 Excel 修改后另存为 CSV；第 1 行必须保留 14 个标准字段。
+- “增量更新”以 `Draw Date + Stream + Target Category / Occupation + Region` 作为唯一键，匹配则覆盖，不匹配则新增。
+- “全量覆盖”会用上传文件替换全部 Draw 记录，但不会影响客户、评分、预测或二维码数据。
+- 导入前会验证年份、日期、Stream 和 ITA 数量；任意一行失败时整批不写入。
+- 每次成功导入都会保存文件名、方式、新增数、更新数、总记录数、ITA 总数和时间。
+
 安省 OINP Job Offer 类别 EOI 评分计算器，包含 11 步问答、用户注册登录、评分记录、管理员客户列表，以及服务器端微信咨询二维码设置。
 
 ## Vultr 生产环境
