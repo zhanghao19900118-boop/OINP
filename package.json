@@ -40,5 +40,5 @@
     "wrangler": "4.92.0"
   },
   "type": "module",
-  "displayName": "OINP EOI \u8bc4\u5206\u8ba1\u7b97\u5668"
+  "displayName": "OINP EOI 评分计算器"
 }
